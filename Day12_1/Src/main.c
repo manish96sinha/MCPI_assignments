@@ -31,22 +31,20 @@
 
 int main(void)
 {
-	char str1[32];
+
 	char str[32];
 	uint16_t val;
 	SystemInit();
 	ADC_Init();
 	SwitchInit(SWITCH);
 	LcdInit();
-	LcdPuts(LCD_LINE1,str1);
-	sprintf(str1, "LDR value");
 	while(1)
 	{
 		while(exti0_flag == 0)
 			;
 		val = ADC_GetValue();
 		sprintf(str, "ADC=%u", val);
-		LcdPuts(LCD_LINE2,str);
+		LcdPuts(LCD_LINE1,str);
 		DelayMs(100);
 		exti0_flag = 0;
 	}
